@@ -10,6 +10,7 @@ function drawShip(ctx: CanvasRenderingContext2D, s: Ship) {
     ctx.lineWidth = 2;
     ctx.translate(s.x, s.y);
     ctx.rotate(s.dir)
+    ctx.translate(-sw / 2, -sh / 2);
     ctx.beginPath();
     ctx.lineTo(sw, 0);
     ctx.lineTo(sw / 2, sh);
