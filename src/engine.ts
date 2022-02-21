@@ -1,15 +1,19 @@
 import * as dbg from "./debug";
+import { Controller, KeyBindings, makeController } from "./input";
 
 const SECONDS = 1000;
 
 function runLoop(
     canvas: HTMLCanvasElement,
-    update: (dt: number) => void,
+    bindings: KeyBindings,
+    update: (dt: number, input: Controller) => void,
     draw: (canvas: HTMLCanvasElement) => void,
 ): void {
 
     let t0: number;
     let t1: number;
+
+    const input = makeController(bindings);
 
     function step(t: number): void {
         const dt = (t - t1) / SECONDS;
@@ -18,8 +22,12 @@ function runLoop(
         dbg.inc('time', dt);
         dbg.inc('frames');
 
+        for (const [k, v] of Object.entries(input)) {
+            dbg.set(k, Number(v));
+        }
+
         const timeU = dbg.timer('update');
-        update(dt);
+        update(dt, input);
         timeU();
 
         const timeD = dbg.timer('draw');

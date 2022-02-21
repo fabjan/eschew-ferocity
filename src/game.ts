@@ -1,3 +1,4 @@
+import { Controller } from "./input";
 import { drawShip } from "./sprites";
 
 function initialize() {
@@ -8,18 +9,25 @@ function initialize() {
         dx: 16,
         dy: 10,
         dir: 0,
-        spin: 0.314,
     }];
 
-    function update(dt: number): void {
+    function update(dt: number, input: Controller): void {
         if (!dt) {
             return;
         }
 
+        let spin;
         for (const s of ships) {
             s.x += (s.dx * dt);
             s.y += (s.dy * dt);
-            s.dir += (s.spin * dt);
+
+            spin = 0;
+            if (input.left) {
+                spin = -3.14;
+            } else if (input.right) {
+                spin = 3.14;
+            }
+            s.dir += (spin * dt);
         }
     }
 
