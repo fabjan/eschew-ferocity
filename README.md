@@ -1,10 +1,8 @@
-Eschew Ferocity
-===============
+# Eschew Ferocity
 
 Eschew Ferocity is a space swashbuckling/privateering/trucking game.
 
-Running
-=======
+# Running
 
 You need [Yarn].
 
@@ -20,11 +18,10 @@ $ open public/index.html
 
 [Yarn]: https://yarnpkg.com
 
-Features
-========
+# Features
 
 - [x] a spaceship
-- [ ] flying
+- [x] flying
 - [ ] planets / stations
 - [ ] landing / docking
 - [ ] a map

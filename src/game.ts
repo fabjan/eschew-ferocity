@@ -18,6 +18,12 @@ function initialize() {
 
         let spin;
         for (const s of ships) {
+
+            if (input.throttle) {
+                s.dy += Math.cos(s.dir);
+                s.dx -= Math.sin(s.dir);
+            }
+
             s.x += (s.dx * dt);
             s.y += (s.dy * dt);
 
