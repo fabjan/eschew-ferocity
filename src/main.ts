@@ -1,6 +1,6 @@
 import { runLoop } from "./engine";
-import { initialize as gameInit } from "./game";
 import { KeyBindings } from "./input";
+import { mainMenu } from "./menu";
 import { isCanvas, isCustomEvent } from "./util";
 
 document.addEventListener('ef.start', (ev: Event) => {
@@ -28,10 +28,10 @@ document.addEventListener('ef.start', (ev: Event) => {
     };
 
     console.info('... initializing game');
-    const { update, draw } = gameInit();
+    const stage = mainMenu(bindings);
 
     console.info('... starting game loop');
-    runLoop(canvas, bindings, update, draw);
+    runLoop(canvas, bindings, stage);
 });
 
 console.info('waiting for game start event');

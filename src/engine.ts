@@ -3,11 +3,15 @@ import { Controller, KeyBindings, makeController } from "./input";
 
 const SECONDS = 1000;
 
+type Stage = {
+    update: (dt: number, input: Controller) => Stage,
+    draw: (canvas: HTMLCanvasElement) => void,
+}
+
 function runLoop(
     canvas: HTMLCanvasElement,
     bindings: KeyBindings,
-    update: (dt: number, input: Controller) => void,
-    draw: (canvas: HTMLCanvasElement) => void,
+    { update, draw }: Stage,
 ): void {
 
     let t0: number;
@@ -27,8 +31,13 @@ function runLoop(
         }
 
         const timeU = dbg.timer('update');
-        update(dt, input);
+        const stage = update(dt, input);
         timeU();
+
+        if (stage) {
+            update = stage.update;
+            draw = stage.draw;
+        }
 
         const timeD = dbg.timer('draw');
         draw(canvas);
@@ -49,4 +58,5 @@ function runLoop(
 
 export {
     runLoop,
+    Stage,
 }

@@ -1,17 +1,18 @@
+import { Stage } from "./engine";
 import { Controller } from "./input";
 import { drawShip } from "./sprites";
 
-function initialize() {
+function initialize(): Stage {
 
     const ships = [{
-        x: 0,
-        y: 0,
+        x: 200,
+        y: 200,
         dx: 16,
         dy: 10,
         dir: 0,
     }];
 
-    function update(dt: number, input: Controller): void {
+    function update(dt: number, input: Controller): Stage {
         if (!dt) {
             return;
         }
@@ -35,6 +36,8 @@ function initialize() {
             }
             s.dir += (spin * dt);
         }
+
+        return null;
     }
 
     function draw(canvas: HTMLCanvasElement): void {
