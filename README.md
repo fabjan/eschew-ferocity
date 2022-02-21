@@ -1,8 +1,27 @@
-# Eschew Ferocity
+Eschew Ferocity
+===============
 
 Eschew Ferocity is a space swashbuckling/privateering/trucking game.
 
-# Features
+Running
+=======
+
+You need [Yarn].
+
+```shell
+$ yarn install
+[...]
+✨  Done in 0.20s.
+$ yarn build
+[...]
+✨  Done in 2.42s.
+$ open public/index.html
+```
+
+[Yarn]: https://yarnpkg.com
+
+Features
+========
 
 - [x] a spaceship
 - [ ] flying
