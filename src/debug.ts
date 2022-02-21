@@ -11,6 +11,10 @@ function inc(name: string, n = 1) {
     debugInfo[name] = (debugInfo[name] || 0) + n;
 }
 
+function set(name: string, n: number) {
+    debugInfo[name] = n;
+}
+
 function show(canvas: HTMLCanvasElement) {
     if (!DEBUG_SHOW) {
         return;
@@ -30,5 +34,6 @@ function show(canvas: HTMLCanvasElement) {
 export {
     timer,
     inc,
+    set,
     show,
 }
