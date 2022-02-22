@@ -23,12 +23,6 @@ function runLoop(
         const dt = (t - t1) / SECONDS;
         t1 = t;
 
-        dbg.inc('time', dt);
-        dbg.inc('frames');
-
-        for (const [k, v] of Object.entries(input)) {
-            dbg.set(k, Number(v));
-        }
 
         const timeU = dbg.timer('update');
         const stage = update(dt, input);
@@ -43,7 +37,9 @@ function runLoop(
         draw(canvas);
         timeD();
 
+        const timeDbg = dbg.timer('debug');
         dbg.show(canvas);
+        timeDbg();
 
         window.requestAnimationFrame(step);
     }
